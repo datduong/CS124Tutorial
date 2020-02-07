@@ -32,7 +32,7 @@ approx_llh = function(p01_inside,alphas) {
 }
 
 all_possible_value = seq(0.001,.499,by=0.01)
-plot(all_possible_value , sapply(all_possible_value,true_llh), type='l', xlab='input value',ylab='objective func value') ## easily see solution by grid search
+plot(all_possible_value , sapply(all_possible_value,true_llh), type='l', lwd=4, xlab='input value',ylab='objective func value') ## easily see solution by grid search
 
 #### start with some guesses
 p00 = .35
@@ -42,15 +42,15 @@ p11 = .25 ## want to solve
 
 #### step 1, solve for best p01 in lower bound
 alphas = compute_alpha(p00,p01,p10,p00)
-points(all_possible_value , sapply(all_possible_value,approx_llh,alphas), type='l',col='red',lwd=2)
-legend('topright',c('true likelihood','approx bound'),col=c('black','red'),lty=1)
+points(all_possible_value , sapply(all_possible_value,approx_llh,alphas), type='l',col='red',lwd=4)
+legend('topright',c('true likelihood','approx bound'),col=c('black','red'),lty=1,cex=2,lwd=8)
 abline(v=p01)
 p01 = .1 ## new best, here, we just eye-ball
 p11 = .4 ## new best
 
 #### step 2, update alphas
 alphas = compute_alpha(p00,p01,p10,p00)
-points(all_possible_value , sapply(all_possible_value,approx_llh,alphas), type='l',col='blue',lwd=2)
+points(all_possible_value , sapply(all_possible_value,approx_llh,alphas), type='l',col='blue',lwd=4)
 # legend('topright',c('true likelihood','approx bound'),col=c('black','blue'),lty=1)
 abline(v=p01)
 p01 = .05 ## new best, here, we just eye-ball
@@ -58,7 +58,7 @@ p11 = .45 ## new best
 
 #### repeat step 1, and then 2 again.
 alphas = compute_alpha(p00,p01,p10,p00)
-points(all_possible_value , sapply(all_possible_value,approx_llh,alphas), type='l',col='darkviolet',lwd=2)
+points(all_possible_value , sapply(all_possible_value,approx_llh,alphas), type='l',col='green3',lwd=4)
 # legend('topright',c('true likelihood','approx bound'),col=c('black','blue'),lty=1)
 abline(v=p01)
 p01 = .025 ## new best, here, we just eye-ball
