@@ -8,7 +8,7 @@
 ## below, we use EM to solve for p01 and p11.
 
 true_llh = function (p01){
-	p11 = .5 - p01 # suppose we fix everything else at 0.25
+	p11 = .5 - p01 # suppose we fix p00 and p10 
 	return (log(p00*p11 + p01*p10))
 }
 
@@ -23,7 +23,7 @@ compute_alpha = function(p00,p01,p10,p11){
 
 approx_llh = function(p01_inside,alphas) {
 	## approximate true log likelihood with jensen inequality, then apply tightest bound
-	## suppose we fix everything else at 0.25
+	## suppose we fix p00 and p10 
 	alpha1 = alphas[[1]]
 	alpha2 = alphas[[2]]
 	p11_inside = .5 - p01_inside ## we will optimize only the inside
