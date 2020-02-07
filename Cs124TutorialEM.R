@@ -31,14 +31,15 @@ approx_llh = function(p01_inside,alphas) {
 	return ( alpha1*log(p00*p11_inside/alpha1) + alpha2*log(p01_inside*p10/alpha2))
 }
 
-all_possible_value = seq(0.001,.499,by=0.01)
-plot(all_possible_value , sapply(all_possible_value,true_llh), type='l', lwd=4, xlab='input value',ylab='objective func value') ## easily see solution by grid search
 
 #### start with some guesses
 p00 = .35
 p01 = .25 ## want to solve
 p10 = .15
 p11 = .25 ## want to solve
+
+all_possible_value = seq(0.001,.499,by=0.01)
+plot(all_possible_value , sapply(all_possible_value,true_llh), type='l', lwd=4, xlab='input value',ylab='objective func value') ## easily see solution by grid search
 
 #### step 1, solve for best p01 in lower bound
 alphas = compute_alpha(p00,p01,p10,p00)
