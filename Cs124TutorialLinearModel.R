@@ -40,7 +40,7 @@ install.packages('glmnet')
 library('glmnet')
 
 ## lasso alpha=1 is the lasso penalty
-model = glmnet (x=fin,y=y,alpha=1,family="gaussian",intercept=F) # https://www.rdocumentation.org/packages/glmnet/versions/3.0-2/topics/glmnet
+model = glmnet (x=fin,y=y,alpha=1,family="gaussian",intercept=T) # https://www.rdocumentation.org/packages/glmnet/versions/3.0-2/topics/glmnet
 
 coef1 = coef(model, s = 0.01)  # extract coefficients at a single value of lambda, here it is 0.01
 head (coef1) ## do we see that SNP1 has same values as simple linear regression ? 
@@ -49,12 +49,12 @@ coef1 = coef(model, s = 0.1)
 head (coef1) ## not much difference for the 2 choices of lambda
 
 ## ridge
-model = glmnet (x=fin,y=y,alpha=0,family="gaussian",intercept=F) # https://www.rdocumentation.org/packages/glmnet/versions/3.0-2/topics/glmnet
+model = glmnet (x=fin,y=y,alpha=0,family="gaussian",intercept=T) # https://www.rdocumentation.org/packages/glmnet/versions/3.0-2/topics/glmnet
 coef1 = coef(model, s = 0.01)  # extract coefficients at a single value of lambda
 head (coef1) ## do we see that SNP1 has same values as simple linear regression ? 
 
 ## fit both lasso and ridge together 
-model = glmnet (x=fin,y=y,alpha=0.5,family="gaussian",intercept=F) # https://www.rdocumentation.org/packages/glmnet/versions/3.0-2/topics/glmnet
+model = glmnet (x=fin,y=y,alpha=0.5,family="gaussian",intercept=T) # https://www.rdocumentation.org/packages/glmnet/versions/3.0-2/topics/glmnet
 coef1 = coef(model, s = 0.01)  # extract coefficients at a single value of lambda
 head (coef1) ## do we see that SNP1 has same values as simple linear regression ? 
 
