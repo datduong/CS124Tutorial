@@ -17,6 +17,9 @@ text(mtcars$mpg, mtcars$wt, rownames(mtcars), pos = 4)
 
 # https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/prcomp
 
+## scale --> make variance=1
+## center --> make the mean=0
+
 pca_mod = prcomp(mtcars[,c('mpg','wt')],retx=T,scale=T,center=T) # scale=T,center=T
 summary(pca_mod)
 
@@ -38,7 +41,7 @@ fin = t(fin) ## people x num_snp
 # what is covariance here? covariance is the D metric. 
 cov ( fin[,1:5] ) 
 
-cor ( fin[,1:5] ) ## correlation 
+cor ( fin[,1:5] ) ## correlation -->LD
 
 dim (fin) 
 
@@ -54,8 +57,12 @@ dim (fin)
 
 # principal component 
 
+# each SNP goes from to 0-2 so they are on the same scale already. 
+
 pca_mod = prcomp(fin,retx=T) # notice, we don't need to scale or center? scale=T,center=T
 plot(pca_mod$x[,1],pca_mod$x[,2])
 
 
-
+# ways to cluster
+K-mean clustering 
+hierachical clustering 
